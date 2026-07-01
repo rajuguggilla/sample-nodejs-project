@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "test": "jest --watch",
-    "build": "mkdir -p dist && cp -r . dist/"
+    "build": "mkdir -p dist && rsync -av --exclude=dist --exclude=node_modules ./ dist/"
   },
   "author": "Adem Cemil YALCIN",
   "license": "ISC",
