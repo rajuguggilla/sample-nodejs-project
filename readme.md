@@ -1,3 +1,8 @@
+## Deployment Status
+
+[![Staging Deploy](https://github.com/rajuguggilla/sample-nodejs-project/actions/workflows/download-artifacts.yml/badge.svg)](https://github.com/rajuguggilla/sample-nodejs-project/actions/workflows/download-artifacts.yml)
+[![Production Deploy](https://github.com/rajuguggilla/sample-nodejs-project/actions/workflows/download-artifacts.yml/badge.svg)](https://github.com/rajuguggilla/sample-nodejs-project/actions/workflows/download-artifacts.yml)
+
 # 📦 Sample Node.js Application with Docker Support
 
 This repository contains a Node.js application packaged with Docker and managed via Docker Compose. It allows you to run the application in a containerized environment for easy setup and deployment.
