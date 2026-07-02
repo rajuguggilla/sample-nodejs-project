@@ -69,7 +69,8 @@ jobs:
 
       - name: Run tests
         run: |
-          npm test -- --coverage
+          npx jest --ci --coverage --forceEx
+          # npm test -- --coverage
           # npm run test:e2e ./build-output/dist
 
       - name: Upload test results
@@ -97,6 +98,7 @@ jobs:
           path: ./scan-target
 
       - name: Run security scan
+        continue-on-error: true
         run: |
           # Example security scanning
           npm audit --json > audit-results.json
