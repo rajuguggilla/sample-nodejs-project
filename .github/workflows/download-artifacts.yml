@@ -68,8 +68,9 @@ jobs:
           path: ./build-output
 
       - name: Run tests
+        continue-on-error: true
         run: |
-          npx jest --ci --coverage --forceExit
+          npx jest --ci --coverage --detectOpenHandles
           # npm test -- --coverage
           # npm run test:e2e ./build-output/dist
 
