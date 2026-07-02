@@ -1,0 +1,47 @@
+name: Test Actions 
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    
+jobs:
+  test-action:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test-case:
+          - name: "Basic functionality"
+            dockerfile-path: "./test/Dockerfile.basic"
+            expected-outcome: "success"
+          - name: "Security scan failure"
+            dockerfile-path: "./test/Dockerfile.vulnerable"
+            expected-outcome: "failure"
+          - name: "Custom configuration"
+            dockerfile-path: "./test/Dockerfile.custom"
+            security-scan: "false"
+            expected-outcome: "success"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test action
+        id: test
+        uses: ./ # Test local action
+        with:
+          dockerfile-path: ${{ matrix.test-case.dockerfile-path }}
+          image-name: "test-image:latest"
+          security-scan: ${{ matrix.test-case.security-scan || 'true' }}
+        continue-on-error: ${{ matrix.test-case.expected-outcome == 'failure' }}
+
+      - name: Validate outcome
+        run: |
+          if [[ "${{ steps.test.outcome }}" == "${{ matrix.test-case.expected-outcome }}" ]]; then
+            echo "Test passed: ${{ matrix.test-case.name }}"
+          else
+            echo "Test failed: Expected ${{ matrix.test-case.expected-outcome }}, got ${{ steps.test.outcome }}"
+            exit 1
+          fi
