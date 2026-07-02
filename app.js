@@ -16,3 +16,7 @@ const server = http.createServer(app).listen(app.get('port'), function(){
 }); // Http server is created
 
 module.exports = server;
+
+afterAll((done) => {
+  server.close(done);
+});
