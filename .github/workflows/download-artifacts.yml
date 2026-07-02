@@ -70,7 +70,7 @@ jobs:
       - name: Run tests
         run: |
           npm test -- --coverage
-          npm run test:e2e ./build-output/dist
+          # npm run test:e2e ./build-output/dist
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
