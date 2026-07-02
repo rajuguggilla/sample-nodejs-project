@@ -69,7 +69,7 @@ jobs:
 
       - name: Run tests
         run: |
-          npx jest --ci --coverage --forceEx
+          npx jest --ci --coverage --forceExit
           # npm test -- --coverage
           # npm run test:e2e ./build-output/dist
 
