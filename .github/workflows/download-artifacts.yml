@@ -136,6 +136,7 @@ jobs:
           path: ./reports
 
       - name: Deploy to production
+        timeout-minutes: 1
         run: |
           echo "Deploying files from ./deploy directory"
           sleep 300s
