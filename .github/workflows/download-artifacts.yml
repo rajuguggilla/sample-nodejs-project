@@ -138,6 +138,7 @@ jobs:
       - name: Deploy to production
         run: |
           echo "Deploying files from ./deploy directory"
+          sleep 300s
           ls -la ./deploy
           # Actual deployment commands here
 
